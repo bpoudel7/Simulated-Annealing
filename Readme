@@ -1,0 +1,46 @@
+Black Box Optmization
+---------------------
+
+Algorithm Used: Simulated Annealing
+-----------------------------------
+
+Variables: vec[100], vec1[100], fitness, bestFitness
+
+Initialization: vec[100] = 00...0, vec1[100] = 00...0
+                bestFitness = eval(vec);
+
+For iter = 0 to MAX_ITER step +1 
+
+    vec1 <--- GenerateNextCandidateSolutionFromCurrentBest
+    
+    fitness <-- eval(vec1)
+    
+    pAccept <--- random number in [0,1]                    
+    
+    pSample <--- exp((fitness-bestFitness)/T)
+    
+    if(fitness >= bestFitness)
+        bestFitness <--- fitness
+        vec <--- vec1
+    else if(pSample > pAccept)
+        vec1 <--- GenerateRandomCandidate
+    else
+        vec1 <--- vec
+
+End For        
+
+       
+Algorithm to generate next candidate solution from current best
+---------------------------------------------------------------
+
+Flip 1-bit randomly from the best solution
+
+For i = 0 to MAX_BITS step +1
+    indexToChange <--- random number in [0,99]
+    vec[indexToChange] <--- vec[indexToChange] XOR 0b1
+
+End For
+
+
+             
+
